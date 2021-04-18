@@ -10,7 +10,8 @@ def storage_information_view(request):
     non_closed_visits = [{
             'who_entered': person.passcard.owner_name,
             'entered_at': person.entered_at,
-            'duration': format_duration(get_duration(person))
+            'duration': format_duration(get_duration(person)),
+            'is_strange': person.is_visit_long()
             } for person in people_in_vault]
 
     context = {

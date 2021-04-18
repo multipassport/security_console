@@ -27,10 +27,12 @@ class Visit(models.Model):
         )
 
     def is_visit_long(self, suspicious_visit_time_in_seconds = 3600):
-        is_strange = False
-        visit_duration = (self.leaved_at - self.entered_at).total_seconds()
+        is_long = False
         if self.leaved_at:
+            visit_duration = (self.leaved_at - self.entered_at).total_seconds()
             if (visit_duration > suspicious_visit_time_in_seconds):
-                is_strange = True
-        return is_strange
+                is_long = True
+        else:
+            is_long = True
+        return is_long
 
