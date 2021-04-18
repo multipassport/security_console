@@ -23,7 +23,10 @@ def passcard_info_view(request, passcode):
 
 
 def get_duration(visit):
-    time_in_vault = (visit.leaved_at - visit.entered_at).total_seconds()
+    if visit.leaved_at:
+        time_in_vault = (visit.leaved_at - visit.entered_at).total_seconds()
+    else:
+        time_in_vault = (timezone.localtime() - visit.entered_at).total_seconds()
     return time_in_vault
 
 
@@ -33,4 +36,3 @@ def format_duration(duration):
     seconds = int((duration % 3600) % 60)
     time_in_vault = datetime.time(hour=hours, minute=minutes, second=seconds)
     return time_in_vault
-
