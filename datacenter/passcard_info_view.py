@@ -19,7 +19,7 @@ def passcard_info_view(request, passcode):
         "passcard": passcard,
         "this_passcard_visits": this_passcard_visits
     }
-    return render(request, 'passcard_info.html', context)
+    return render(request, "passcard_info.html", context)
 
 
 def get_duration(visit):
