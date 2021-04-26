@@ -1,5 +1,7 @@
-from django.db import models
+import datetime
 
+from django.db import models
+from django.utils import timezone
 
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
@@ -35,4 +37,18 @@ class Visit(models.Model):
         else:
             is_long = True
         return is_long
+
+
+    def get_duration(self):
+        time_in_vault = (timezone.localtime() - self.entered_at).total_seconds()
+        return time_in_vault
+
+
+    def format_duration(self):
+        hours = int(self.get_duration() // 3600)
+        minutes = int((self.get_duration() % 3600) // 60)
+        seconds = int((self.get_duration() % 3600) % 60)
+        time_in_vault = datetime.time(hour=hours, minute=minutes, second=seconds)
+        return time_in_vault
+
 
