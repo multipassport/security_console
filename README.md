@@ -11,6 +11,6 @@ python -m pip install -r requirements.txt
 ```
 * Запустить сайт командой
 ```
-python -m pip install -r requirements.txt
+python main.py
 ```
 * Сайт открывается по адресу http://127.0.0.1:8000
