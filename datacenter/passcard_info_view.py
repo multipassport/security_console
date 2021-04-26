@@ -8,7 +8,6 @@ from django.utils import timezone
 
 def passcard_info_view(request, passcode):
     passcard = Passcard.objects.get(passcode=passcode)
-    # Программируем здесь
     person_visits= Visit.objects.filter(passcard=passcard)
     this_passcard_visits = [{
             "entered_at": visit.entered_at,
