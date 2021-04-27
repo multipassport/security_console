@@ -29,18 +29,13 @@ class Visit(models.Model):
         )
 
     def is_visit_long(self, suspicious_visit_time_in_seconds = 3600):
-        is_long = False
-        if self.leaved_at:
-            visit_duration = (self.leaved_at - self.entered_at).total_seconds()
-            if (visit_duration > suspicious_visit_time_in_seconds):
-                is_long = True
-        else:
-            if (self.get_duration() > suspicious_visit_time_in_seconds):
-                is_long = True
-        return is_long
+        return (self.get_duration() > suspicious_visit_time_in_seconds)
 
     def get_duration(self):
-        time_in_vault = (timezone.localtime() - self.entered_at).total_seconds()
+        if self.leaved_at:
+            time_in_vault = (self.leaved_at - self.entered_at).total_seconds()
+        else:
+            time_in_vault = (timezone.localtime() - self.entered_at).total_seconds()
         return time_in_vault
 
     def format_duration(self):
