@@ -20,7 +20,7 @@ python -m pip install -r requirements.txt
 	* `DB_PASSWORD` - пароль
 	* `DEBUG` - для включения режима отладки поставить `True`. Для выключения - `False` или оставить пустым
 	* `SECRET_KEY` - секретный ключ сайта
-	* `ALLOWED_HOSTS` - список разрешенных сайтов для использования в формате `localhost, 127.0.0.1, my_site.com'`
+	* `ALLOWED_HOSTS` - список разрешенных сайтов для использования в формате `localhost, 127.0.0.1, my_site.com`
 * Сайт запускается командой:
 ```
 python manage.py runserver 0.0.0.0:8000
